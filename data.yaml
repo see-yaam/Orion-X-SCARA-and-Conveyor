@@ -1,0 +1,14 @@
+train: D:\trialscara\train\images
+val: D:\trialscara\valid\images
+test: D:\trialscara\test\images
+nc: 3
+names:
+- blue
+- green
+- yellow
+roboflow:
+  workspace: abdur-rahman-bhuyan
+  project: x-86cht
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/abdur-rahman-bhuyan/x-86cht/dataset/1
