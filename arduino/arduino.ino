@@ -12,12 +12,12 @@ const int STEP_PIN_3 = 12; const int DIR_PIN_3  = 13;
 const int STEP_PIN_4 = 6;  const int DIR_PIN_4  = 7;
 const int JAW_SERVO_PIN = 5;
 
-// 🎯 Limit Switch Pins & Power
-const int LIMIT_POWER_PIN = 4; // Acts as 5V source for Switch 1
-const int LIMIT_PIN_1 = 2;     // Elbow 1 Limit Switch
-const int LIMIT_PIN_2 = 3;     // Elbow 2 Limit Switch
+// 🎯 Limit Switch Pins & Power (SWAPPED HERE)
+const int LIMIT_POWER_PIN = 4; // Acts as 5V source
+const int LIMIT_PIN_1 = 3;     // Elbow 1 Limit Switch (Swapped to 3)
+const int LIMIT_PIN_2 = 2;     // Elbow 2 Limit Switch (Swapped to 2)
 
-// 🎯 Homing Speeds (Reduced for safety)
+// 🎯 Homing Speeds
 const float HOMING_SPEED_1 = 150.0; 
 const float HOMING_SPEED_2 = 150.0;
 
@@ -103,9 +103,9 @@ void setup() {
   pinMode(LIMIT_POWER_PIN, OUTPUT);
   digitalWrite(LIMIT_POWER_PIN, HIGH);
 
-  // Initialize Limit Switches
-  pinMode(LIMIT_PIN_1, INPUT_PULLUP);
-  pinMode(LIMIT_PIN_2, INPUT_PULLUP);
+  // 🎯 Standard INPUT 
+  pinMode(LIMIT_PIN_1, INPUT);
+  pinMode(LIMIT_PIN_2, INPUT);
 
   configureStepper(stepper1, MAX_SPEED_1, ACCEL_1);
   configureStepper(stepper2, MAX_SPEED_2, ACCEL_2);
@@ -115,7 +115,7 @@ void setup() {
   jawServo.attach(JAW_SERVO_PIN);
   jawServo.write((int)JAW_OPEN_DEG);
 
-  Serial.println("READY"); // Arduino waits for Python command now
+  Serial.println("READY"); 
 }
 
 void loop() {
